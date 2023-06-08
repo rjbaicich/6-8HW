@@ -25,6 +25,14 @@ class Base:
         #Changing Data Types
         self.df.convert_dtypes()
 
+    def get_beach_data(self, beach_name):
+        beach_data = self.df[self.df['beach_name'].str.lower() == beach_name.lower()]
+        
+        if not beach_data.empty:
+            return beach_data.to_dict(orient='records')[0]
+        else:
+            return None
+        
 if __name__ == '__main__':
     c = Base()
     print(c.return_string())

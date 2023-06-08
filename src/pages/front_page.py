@@ -4,6 +4,7 @@ st.title('Clean Or Not: Beach Edition')
 st.text('Is That A Clean Beach?')
 
 st.header('Here are the different pages of my application:')
+
 st.subheader('Your Beach Is')
 st.text('Your Beach Is: Returns an image to let you know if your beach is clean or not.')
 

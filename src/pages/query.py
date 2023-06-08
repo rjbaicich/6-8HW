@@ -3,15 +3,15 @@ from base import Base
 
 base_csv_file = r'C:\Users\RedneckRandy\Documents\GitHub\6-8HW\dohmh-beach-water-quality-data-1.csv'
 
-beach_name = st.text_input('Enter the name of a beach:')
+beach_name = st.text_input('Enter the name of a beach:', value='').lower()
 
 if beach_name:
-    c = Base(base_csv_file)
-    selected_beach = c.df[c.df['beach_name'].str.lower() == beach_name.lower()]
+    base = Base()
+    beach_data = base.get_beach_data(beach_name)
     
-    if not selected_beach.empty:
-        st.write(selected_beach)
-        enterococci_results = selected_beach.iloc[0]['Enterococci Results']
+    if beach_data:
+        st.write(beach_data)
+        enterococci_results = beach_data.get('Enterococci Results', 0)
         if isinstance(enterococci_results, int):
             if enterococci_results <= 99:
                 st.image('https://www.rd.com/wp-content/uploads/2020/04/tropic-of-cancer-beach-in-exuma-bahamas.jpg?fit=700,467',
